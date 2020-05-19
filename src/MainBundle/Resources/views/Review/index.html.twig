@@ -1,0 +1,13 @@
+{% for review in reviews %}
+    <div class="blog-single-comment-item">
+        <div class="blog-single-comment-image blog-single-comment-image1"></div>
+        <div class="blog-single-comment-text {{ cycle(['odd', 'even'], loop.index0) }}" id="review-{{ review.id }}">
+            <h6>{{ review.user }}</h6>
+            <span class="blog-single-comment-date">{{ review.createdAt|date('d/m/Y/ H:i') }}</span>
+            <p>{{ review.review }}</p>
+{#            <a href="#" class="blog-reply-btn"><i class="zmdi zmdi-mail-reply"></i> Reply</a>#}
+        </div>
+    </div>
+    {% else %}
+        <p>There are no reviews for this post. Be the first to review...</p>
+{% endfor %}

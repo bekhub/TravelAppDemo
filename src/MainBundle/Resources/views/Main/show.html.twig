@@ -1,0 +1,181 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <!--tours-details-area-content start -->
+    <div class="tours-details-area-content section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="tours-details-content-left">
+                        <div class="tours-gallery-heading" id="img">
+                            <h2 id="title">{{ tour.title }}</h2>
+                        </div>
+                        <div class="tours-details-gallery owl-carousel padding-bottom">
+                            {% for image in images %}
+                                <div class="tours-details-gallery-single" data-dot="<img src='{{ asset(['public/img/', image.image]|join) }}' alt=''>">
+                                    <img src="{{ asset(['public/img/', image.image]|join) }}" alt="">
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="tours-details-menu">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab">Детали</a></li>
+                                <li><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Маршрут</a></li>
+                                <li><a href="#map" aria-controls="map" role="tab" data-toggle="tab">Карта</a></li>
+                                <li><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Отзывы</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content tours-details-tab-content padding-top">
+                            <div role="tabpanel" class="tab-pane fade in active" id="detail">
+                                <div class="tours-details-menu-bottom">
+                                    <h2>{{ tour.aboutTitle }}</h2>
+                                    <p>{{ tour.aboutText | raw}}</p>
+                                </div>
+                                <div class="tourist-details-information">
+                                    <div class="tourist-details-single-row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Departure & Return Location</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Sahazalal. International Airport <a href="#">(Google Map)</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tourist-details-single-row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Departure Time</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>5 Hours Before Flight Time</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tourist-details-single-row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Included And Not</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul>
+                                                    <li>Air fares</li>
+                                                    <li>3 Nights Hotel Accomodation</li>
+                                                    <li>All Drinks</li>
+                                                    <li>All Tickets Meuseum</li>
+                                                    <li class="crossed-list">Guide Service Fee</li>
+                                                    <li class="crossed-list">Any Private Expenses</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="itinerary">
+                                <div class="tourist-details-information">
+                                    <div class="tourist-details-single-row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Departure & Return Location</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Sahazalal. International Airport <a href="#">(Google Map)</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tourist-details-single-row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Departure Time</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>5 Hours Before Flight Time</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tourist-details-single-row">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Included And Not</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul>
+                                                    <li>Air fares</li>
+                                                    <li>3 Nights Hotel Accomodation</li>
+                                                    <li>All Drinks</li>
+                                                    <li>All Tickets Meuseum</li>
+                                                    <li class="crossed-list">Guide Service Fee</li>
+                                                    <li class="crossed-list">Any Private Expenses</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="map">
+                                <div class="tours-details-menu-bottom">
+                                    <h2>{{ tour.aboutTitle }}</h2>
+                                    <p>{{ tour.aboutText|raw }}</p>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="reviews">
+                                <div class="blog-details-socials-line">
+                                    <span><i class="zmdi zmdi-share"></i>Shares : </span>
+                                    <a href="https://www.facebook.com/sharer.php?u=http://localhost:8000/tours/7" target="_blank"><i class="zmdi zmdi-facebook"></i></a>
+                                    <a href="https://twitter.com/share?url=http://localhost:8000/tours/7" target="_blank"><i class="zmdi zmdi-twitter"></i></a>
+                                    <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+                                    <a href="https://plus.google.com/share?url=http://localhost:8000/tours/7" target="_blank"><i class="zmdi zmdi-google-plus"></i></a>
+                                </div>
+                                <div class="blog-details-comments padding-top">
+                                    {% include 'MainBundle:Review:index.html.twig' with { 'reviews': reviews } %}
+                                </div>
+                                <div class="leave-a-comment-form">
+                                    <h4>Поделитесь Отзывом;)</h4>
+                                    {{ render(controller('MainBundle:Review:new',{ 'tour_id': tour.id })) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tours-details-content-right">
+                        <div class="right-details-form padding-bottom">
+                            <h3 id="price"><span>Цена</span> ${{ tour.price }}</h3>
+                            <h4>Забронировать тур</h4>
+                            {{ render(controller('MainBundle:TourReservation:new',{ 'tour_id': tour.id })) }}
+                        </div>
+
+                        <div class="why-book-us">
+                            {{ static.cardText|raw }}
+{#                            <h4>Why Book With Us?</h4>#}
+{#                            <a href="#" class="why-book-us-btn"><i class="zmdi zmdi-money"></i> No-hassle best price guarantee</a>#}
+{#                            <a href="#" class="why-book-us-btn"><i class="zmdi zmdi-account"></i> Customer care available 24/7</a>#}
+{#                            <a href="#" class="why-book-us-btn"><i class="zmdi zmdi-account"></i> Free Travel Insureance</a>#}
+                        </div>
+
+                        <div class="need-travel-help">
+                            <h4>Нужна Помощь?</h4>
+                            <p>Не стесняйтесь звонить нам. Мы-команда экспертов, и мы рады поговорить с вами.</p>
+                            <h3><i class="zmdi zmdi-phone"></i>{{ static.phone }}</h3>
+                            <a href="mailto:Stroman.rogers@gmail.com"><i class="zmdi zmdi-email"></i>{{ static.email }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--tours-details-area-content end -->
+{% endblock %}
+{% block title %}
+    Tour Details
+{% endblock %}
+

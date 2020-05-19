@@ -1,0 +1,21 @@
+<div id="popup-search-box-id" class="popup-search-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="popup-search-box-inner">
+                    <form action="{{ path('search') }}" method="get">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="search" placeholder="Поиск..." name="search">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit"><i class="zmdi zmdi-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <span class="close-btn-search"><i class="zmdi zmdi-close"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

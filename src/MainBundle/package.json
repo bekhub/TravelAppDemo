@@ -1,0 +1,17 @@
+{
+  video84.mp4={
+  "Descr": "World class",
+  "FileName": "video84.mp4",
+  "ID": 84,
+  "Path": "http://upromo.net.kg/uploads/media/default/0001/01/260319182437_3.mp4",
+  "repeats": 3},
+  video83.mp4=
+  {"Descr": "О банке Кыргызстан", "FileName": "video83.mp4","ID": 83,
+
+  "Path": "http://upromo.net.kg/uploads/media/default/0001/01/260319182243_2.mp4", "repeats":3},
+
+  video82.mp4=
+  {"Descr": "Кыргызстан", "FileName": "video82.mp4", "ID": 82,
+  "Path": "http://upromo.net.kg/uploads/media/default/0001/01/260319182212_1.mp4", "repeats": 4
+  }
+}

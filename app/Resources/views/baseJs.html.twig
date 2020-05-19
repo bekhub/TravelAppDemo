@@ -1,0 +1,211 @@
+<script type="text/javascript">
+    var search_suggest_extended_enable = true;
+    var tablet_suggest_enable = false;
+</script>
+<script type="text/javascript">
+    var preloaderDefaultDelay = 1000;
+    var DocumentPreloader = (function() {
+        function DocumentPreloader() {
+            this.init();
+        }
+        DocumentPreloader.prototype.init = function init() {
+            var element = document.createElement('div');
+            element.id = 'tcp-preloader_global';
+            element.className = 'tcp-preloader tcp-preloader_global';
+            element.style.cssText = 'background:#FFF;display:block;height:100%;width:100%;position:fixed;left:0;top:0;opacity:0;visibility:hidden;z-index:1000000;';
+            element.innerHTML = '<div class="tcp-preloader__content" style="color:#FFF;height:230px;font-size:16px;font-weight:500;left:50%;line-height:230px;margin-left:-115px;margin-top:-115px;overflow:hidden;position:absolute;text-align:center;top:50%;width:230px;white-space:nowrap;"><img alt="Techport" class="tcp-preloader__element tcp-preloader__element_progress" height="230" style="display:block;left:0;line-height:70px;margin:0;opacity:1;position:absolute;top:0;" src="../public/img/preloader_progress.gif" width="230"><img alt="Загрузка..." class="tcp-preloader__element tcp-preloader__element_logo" height="230" style="display:block;left:0;margin:0;opacity:1;position:absolute;top:0;" src="../public/img/preloader_logo.png" width="230"></div>';
+            this.element = element;
+            this.content = this.element.querySelector('.tcp-preloader__content');
+            document.body.appendChild(element);
+            element = null;
+            return this;
+        };
+        DocumentPreloader.prototype.hideOnLoad = function hideOnLoad() {
+            if (!document.getElementById('tcp-preloader_global')) return;
+            var cssFiles = document.getElementsByClassName('css_file');
+            var cssLoaded = true;
+            for (var i = 0; i < cssFiles.length; i++)
+                if (window.getComputedStyle(cssFiles[i]).display != 'none') cssLoaded = false;
+            if (cssLoaded) this.hide();
+            else {
+                this.element.style.background = '#E33059';
+                this.content.innerHTML = 'Some CSS file is not loaded<br>or was uploaded incorrect CSS file!';
+            }
+            cssFiles = cssLoaded = i = null;
+            return this;
+        };
+        DocumentPreloader.prototype.show = function show(delay) {
+            var delay = (typeof delay != 'undefined' || typeof delay != 'number') ? delay : 0;
+            if (!(typeof ajaxPreloader == 'undefined')) ajaxPreloader.hide();
+            if (!document.getElementById('tcp-preloader_global')) this.init();
+            if (delay < 0) {
+                this.element.style.opacity = 1;
+                this.element.style.visibility = 'visible';
+            } else {
+                this.element.classList.remove('tcp-preloader_hidden');
+                this.element.classList.add('tcp-preloader_visible');
+            }
+            return this;
+        };
+        DocumentPreloader.prototype.hide = function hide() {
+            if (!document.getElementById('tcp-preloader_global')) return;
+            this.element.classList.remove('tcp-preloader_visible');
+            this.element.classList.add('tcp-preloader_hidden');
+            return this;
+        };
+        return DocumentPreloader;
+    })();
+    var documentPreloader = new DocumentPreloader();
+
+    var ignore_beforeunload = false;
+
+    function inlineToggleClass() {
+        var target = this.getAttribute('data-toggle-class');
+        var targetClass = this.getAttribute('data-class');
+        if (target !== null && targetClass !== null) {
+            target = target.split(', ');
+            targetClass = targetClass.split(', ');
+            if (this.id === 'mobile_search_button' && document.documentElement.scrollTop > 300 && getComputedStyle(document.getElementById('mobile_search_box')).display === 'block') {
+                return;
+            }
+            for (var i = 0; i < target.length; i++) {
+                if (document.getElementById(target[i]) === null) continue;
+                document.getElementById(target[i]).classList.toggle(targetClass[i]);
+                if (i === 0 && this.id === 'mobile-nav-extra') {
+                    var sidebarWrapperEl = document.getElementById('sidebar-wrapper');
+                    sidebarWrapperEl.scrollTop = sidebarWrapperEl.scrollHeight;
+                }
+            }
+        }
+    }
+
+    function inlineShowButton() {
+        var target = this.getAttribute('data-show');
+        if (target !== null) {
+            target = target.split(', ');
+            for (var i = 0; i < target.length; i++) {
+                if (document.getElementById(target[i]) === null) continue;
+                var targetEl = document.getElementById(target[i]);
+                targetEl.classList.remove('hidden');
+                targetEl.style.display = 'block';
+            }
+            if (this.classList.contains('tcp-mobile-catalog-prev__item')) {
+                document.getElementById('main_menu_mobile_sub').setAttribute('data-last-show', target[0]);
+            }
+        }
+    }
+
+    function inlineHideButton() {
+        var target = this.getAttribute('data-hide');
+        if (target !== null) {
+            target = target.split(', ');
+            for (var i = 0; i < target.length; i++) {
+                if (document.getElementById(target[i]) === null) continue;
+                var targetEl = document.getElementById(target[i]);
+                targetEl.classList.add('hidden');
+                targetEl.style.display = 'none';
+                if (this.id === 'modal-burger' && target[i] === 'main_menu_mobile') {
+                    var menuSubcatsEl = targetEl.getElementsByClassName('tcp-mobile-catalog');
+                    if (menuSubcatsEl.length) {
+                        for (var j = 0; j < menuSubcatsEl.length; j++) {
+                            menuSubcatsEl[j].classList.add('hidden');
+                            menuSubcatsEl[j].style.display = 'none';
+                        }
+                    }
+                }
+            }
+            if (this.id === 'city_accept_close') {
+                document.getElementById('tcp-main-content').style.paddingTop = document.querySelector('header').offsetHeight + 'px';
+            }
+        }
+    }
+
+    function inlineLoadMainMenu() {
+        var sidebarEl = document.getElementById('sidebar-wrapper');
+        var mobileCatsEl = sidebarEl.getElementsByClassName('tcp-mobile-catalog-prev');
+        var mobileSubCatsEl = document.getElementById('main_menu_mobile');
+        var menuVersionEl = sidebarEl.querySelector('div[data-localversion]');
+        var backButtonEl = document.getElementById('mobile_go_back');
+        var menuVersion;
+        var region = typeof RGN.preferredRegion !== undefined ? '_' + RGN.preferredRegion : '';
+        var key = 'main_menu_new';
+        var keyVersion = key + region + '_ver';
+        var content;
+        var mobileCatsKey = 'main_menu_mob';
+        var mobileSubCatsKey = 'main_menu_sub_mob';
+        var mobileCatsContent;
+        var mobileSubCatsContent;
+        var _localStorage = typeof localStorage !== undefined ? localStorage : null;
+        if (menuVersionEl !== null && mobileCatsEl.length && mobileSubCatsEl !== null) {
+            menuVersion = menuVersionEl.getAttribute('data-localversion');
+        }
+        if (mobileSubCatsEl !== null) {
+            var mobileSubCatsEls = mobileSubCatsEl.getElementsByClassName('tcp-mobile-catalog');
+            mobileSubCatsEl.classList.remove('before_document_ready');
+            if (mobileSubCatsEls.length) backButtonEl.remove();
+        }
+        if (_localStorage) {
+            content = _localStorage.getItem(key);
+            mobileCatsContent = _localStorage.getItem(mobileCatsKey);
+            mobileSubCatsContent = _localStorage.getItem(mobileSubCatsKey);
+        }
+        if (menuVersion && _localStorage && _localStorage.getItem(keyVersion) === menuVersion && content !== null && mobileCatsContent !== null && mobileSubCatsContent !== null) {
+            if (mobileCatsEl[0].innerHTML === '') mobileCatsEl[0].innerHTML = mobileCatsContent;
+            mobileSubCatsEl.innerHTML = mobileSubCatsContent;
+            mobileSubCatsEl.classList.remove('before_document_ready');
+            backButtonEl.remove();
+        }
+    }
+</script>
+
+<!-- UTS Counter -->
+<script type="text/javascript">
+    (function(d, w, p) {
+        try {
+            var s = d.createElement('script'),
+                n = d.getElementsByTagName("script")[0],
+                o = w[p] = w[p] || {};
+            o.id = 24;
+            o.use_nuid = 1;
+            s.type = 'text/javascript';
+            s.async = true;
+            n.parentNode.insertBefore(s, n);
+        } catch (e) {}
+    })(document, window, 'uts_counter_params');
+</script>
+<!-- /UTS Counter -->
+<!-- Rtbhouse - ремаркетинг index.phtml START -->
+<script type="text/javascript">
+    (function() {
+        var x = document.createElement('script');
+        x.async = true;
+        x.src = "https://creativecdn.com/tags?type=script&id=pr_YwigcvTz304uE5WIsldr_home";
+        document.getElementsByTagName('head')[0].appendChild(x);
+    }());
+</script>
+<!-- Rtbhouse - ремаркетинг index.phtml END -->
+<!-- RGN -->
+<script type="text/javascript">
+    RGN = {};
+    RGN.preferredRegion = 'MSK';
+    var captcha = {
+        url: 'https://www.google.com/recaptcha/api.js',
+        key: '6LdAQgcTAAAAAL-kiozk3UOSwRTxo7ah1p4o9jHI'
+    };
+    var mobileVersion = 0;
+    var ydfEnabled = 0;
+    var ydfCookieBinded = 0;
+    var ydfGroup = "";
+    var ydfAjaxTimeout = "5000";
+    var httpImages = "//techport-st.cdn.ngenix.net";
+    var wsEnable = "";
+    var wsTime = "2";
+    var wsCountPage = "2";
+    var wsBonusesAccrued = "";
+    var checkAuth = "";
+    var searchString = '';
+    var aeroflot_rate = "70";
+    var techport_layout = "techport_2";
+    var privacy_policy = "";
+</script>
+<!-- /RGN -->

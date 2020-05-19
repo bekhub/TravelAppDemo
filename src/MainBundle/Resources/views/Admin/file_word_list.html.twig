@@ -1,0 +1,13 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+
+	{% if value %}
+        <div style="text-align: center; font-size: 20px">
+            <a href="{{ path('sonata_media_download', {'id': value|sonata_urlsafeid }) }}">
+                <i class="fa fa-file-word-o" aria-hidden="true"></i>
+            </a>
+        </div>
+
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "MainBundle::layout.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <!--aboutus-page-content-area start -->
+    <div class="aboutus-page-content-area section-padding" id="start">
+        <div class="welcome-to-travel-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="welcome-to-travel-inner">
+                            <div class="welcome-to-travel-inner-left">
+                                {{ about.text|raw }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="welcome-to-travel-inner-right">
+                            <img src="{{ asset(['public/img/', about.image]|join)}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="counter-up-area text-center counter-up-about section-padding">
+            <div class="container">
+                <div class="row">
+                    {% for card in cards %}
+                    <div class="col-sm-3">
+                        <div class="single-counter-up-item">
+                            <div class="single-counter-up-item-image">
+                                <img src="{{ asset(['public/img/', card.icon]|join) }}" alt="">
+                            </div>
+                            <div class="single-counter-up-item-text">
+                                <h1><span class="counter">{{ card.value }}</span></h1>
+                                <p>{{ card.cardName }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title text-center rockstar-section-title padding-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <h1>Rockstar Team</h1>
+                        <p>Explore a different way to travel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-members-area padding-bottom text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="team-member-carousel-about owl-carousel">
+                            {% for member in team %}
+                            <div class="single-team-member">
+                                <div class="team-member-image team-member-image{{ loop.index }}">
+                                    <t>{{ asset(['public/img/', member.teamImage]|join) }}|</t>
+                                    <div class="team-member-image-inner">
+                                        {% if teamSM.SM(member.id) %}
+                                        <div class="team-member-socials">
+                                            {% for v in teamSM.SM(member.id) %}
+                                                {% if v.facebook %}
+                                                <a href="https://{{ v.facebook }}"><i class="zmdi zmdi-facebook"></i></a>
+                                                {% endif %}
+                                                {% if v.twitter %}
+                                                <a href="https://{{ v.twitter }}"><i class="zmdi zmdi-twitter"></i></a>
+                                                {% endif %}
+                                                {% if v.instagram %}
+                                                <a href="https://{{ v.instagram }}"><i class="zmdi zmdi-instagram"></i></a>
+                                                {% endif %}
+                                                {% if v.google %}
+                                                <a href="https://{{ v.google }}"><i class="zmdi zmdi-google-plus"></i></a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <h4>{{ member.fullName }}</h4>
+                                <p>{{ member.position }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--aboutus-page-content-area end -->
+{% endblock %}

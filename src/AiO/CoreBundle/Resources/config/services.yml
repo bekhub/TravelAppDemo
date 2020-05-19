@@ -1,0 +1,106 @@
+parameters:
+    aio.listener.before_controller.class: AiO\CoreBundle\Listener\EventListener
+
+services:
+
+    sonata.media.resizer.custom:
+        class: AiO\CoreBundle\Image\CustomResizer
+        arguments: ['@sonata.media.adapter.image.gd', 'outbound', '@sonata.media.metadata.proxy']
+
+    aio_core.service:
+        class: AiO\CoreBundle\Services\CoreService
+        arguments: ['@doctrine.orm.entity_manager', '@sonata.media.twig.extension', '@service_container']
+
+    aio_base.service:
+        class: AiO\CoreBundle\Services\BaseService
+        arguments: []
+
+    aio_core.file.load:
+        class: AiO\CoreBundle\Services\FileLoaderService
+        arguments: []
+
+    admin.tours_admin:
+        class: AiO\CoreBundle\Admin\ToursAdmin
+        arguments: [~, MainBundle\Entity\Tours, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Туры' }
+
+    admin.tour_dates:
+        class: MainBundle\Admin\TourDatesAdmin
+        arguments: [~, MainBundle\Entity\TourDates, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Туры: Даты' }
+
+    admin.tour_reviews_admin:
+        class: AiO\CoreBundle\Admin\TourReviewsAdmin
+        arguments: [~, MainBundle\Entity\TourReviews, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Туры: Отзывы' }
+
+    admin.tour_images:
+        class: AiO\CoreBundle\Admin\TourImagesAdmin
+        arguments: [~, MainBundle\Entity\TourImages, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Туры: Картинки' }
+
+    admin.about:
+        class: MainBundle\Admin\AboutAdmin
+        arguments: [~, MainBundle\Entity\About, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'О нас' }
+
+    admin.about_cards:
+        class: MainBundle\Admin\AboutCardsAdmin
+        arguments: [~, MainBundle\Entity\AboutCards, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'О нас: Карточки' }
+
+    admin.team:
+        class: MainBundle\Admin\TeamAdmin
+        arguments: [~, MainBundle\Entity\Team, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Персонал' }
+
+    admin.team_social_media:
+        class: MainBundle\Admin\TeamSocialMediaAdmin
+        arguments: [~, MainBundle\Entity\TeamSocialMedia, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Персонал: Социальные сети' }
+
+    admin.tour_reservations:
+        class: MainBundle\Admin\TourReservationsAdmin
+        arguments: [~, MainBundle\Entity\TourReservations, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Туры: Записи' }
+
+    admin.home_slider:
+        class: MainBundle\Admin\HomeSliderAdmin
+        arguments: [~, MainBundle\Entity\HomeSlider, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Слайдер Главной страницы' }
+
+    admin.destinations:
+        class: MainBundle\Admin\DestinationsAdmin
+        arguments: [~, MainBundle\Entity\Destinations, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Локации' }
+
+    admin.static_information:
+        class: MainBundle\Admin\StaticInformationAdmin
+        arguments: [~, MainBundle\Entity\StaticInformation, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Статическая информация' }
+
+
+
+    #    aio.listener.before:
+#        class: '%aio.listener.before_controller.class%'
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.request, method: beforeController }
+
+    aio_core.form.type_extension.media:
+        class: AiO\CoreBundle\Form\Extension\MediaTypeExtension
+        tags:
+            -
+                name: form.type_extension
+                alias: sonata_media_type

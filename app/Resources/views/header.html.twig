@@ -1,0 +1,61 @@
+<div class="welcome-area">
+    <div class="header-area header-absolute">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="logo">
+                        <a href="{{ path('main_index') }}"><img src="{{ asset('public/img/logo.png') }}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-8">
+                    <div class="mainmenu">
+                        <ul id="slicknav-menu-list">
+                            <li><a href="{{ path('main_index') }}">Главная</a></li>
+                            <li><a href="{{ path('tours') }}">Туры</a></li>
+                            <li><a href="{{ path('destinations') }}">Локации</a></li>
+                            <li><a href="{{ path('about') }}">О нас</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-8 col-xs-6">
+                    <div class="header-right">
+{#                        <a href="#" class="travel-cart"><img src="{{ asset('public/img/cart-icon-img.png') }}" alt=""><span>0</span></a>#}
+                        <a href="#" class="search-icon-header"><i class="zmdi zmdi-search"></i></a>
+{#                        <ul class="language-selector">#}
+{#                            <li><a href="#" class="header-flug"><img src="{{ asset('public/img/flug-1.jpg') }}" alt=""><i class="zmdi zmdi-chevron-down"></i></a>#}
+{#                                <ul>#}
+{#                                    <li><a href="#"><img src="{{ asset('public/img/flug-2.jpg') }}" alt=""> <span>India</span></a></li>#}
+{#                                    <li><a href="#"><img src="{{ asset('public/img/flug-3.jpg') }}" alt=""> <span>NewZealand</span></a></li>#}
+{#                                    <li><a href="#"><img src="{{ asset('public/img/flug-4.jpg') }}" alt=""> <span>Sri Lanka</span></a></li>#}
+{#                                    <li><a href="#"><img src="{{ asset('public/img/flug-5.jpg') }}" alt=""> <span>Zimbabwe</span></a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                        </ul>#}
+                        <a href="{{ path('fos_user_security_login') }}">Войти</a>
+                        <a href="{{ path('fos_user_registration_register') }}">Регистрация</a>
+                    </div>
+                    <div class="slicknav-menu-wrap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-area slider-area-hp1 owl-carousel text-center">
+        {% for slide in slider %}
+        <div class="single-slide-item hp1-slider-bg{{ loop.index }}" data-dot="<img src='{{ asset(['public/img/', slide.sliderImage]|join) }}' class='small_slider' alt='slider'>">
+            <t>{{ asset(['public/img/', slide.sliderImage]|join) }}|</t>
+            <div class="single-slide-item-table-cell">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <h1>{{ slide.title }}</h1>
+                            <p>{{ slide.description|raw }}</p>
+                            <a href="{{ slide.link }}" class="pink-btn">{{ slide.linkName }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

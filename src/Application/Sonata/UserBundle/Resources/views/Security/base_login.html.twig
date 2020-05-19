@@ -1,0 +1,53 @@
+{% extends "SonataUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+
+
+    {% block sonata_user_login %}
+        <div class="content-width content-main">
+        <div class="content-padding" style="padding-top: 30px;">
+            <div style="width: 300px; margin: 0 auto; font-size: 18px; font-weight: 700;">
+                Вход
+                <a href="{{ path('fos_user_registration_register') }}" style="float: right;">Регистрация</a>
+            </div>
+                {% block sonata_user_login_error %}
+                    {% if error %}
+                        <div class="login-error">Неверный логин или пароль</div>
+                    {% endif %}
+                {% endblock %}
+
+                {% block sonata_user_login_form %}
+                    <form action="{{ path("fos_user_security_check") }}" method="post" role="form"
+                          id="reg_form">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+                        <div class="fb">
+                            <div class="fl">Логин</div>
+                            <input type="text" class="form-control" id="username"
+                            name="_username" value="{{ last_username }}"
+                            required="required"/>
+                        </div>
+
+                        <div class="fb">
+                            <div class="fl">Пароль</div>
+                            <input type="password" class="form-control" id="password"
+                            name="_password" required="required"/>
+                        </div>
+                        <div class="fb">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"
+                                   style="height: auto; width: auto; margin: 0 5px 0 0; padding: 0;" checked="">
+                            <label for="remme">Запомнить меня</label>
+                        </div>
+                        <div class="row">
+                            <div class="sb">
+                                <button class="button bg-primary" id="_submit" name="_submit" type="submit">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+                            </div><!--end .col -->
+                        </div><!--end .row -->
+                    </form>
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+{% endblock fos_user_content %}
+

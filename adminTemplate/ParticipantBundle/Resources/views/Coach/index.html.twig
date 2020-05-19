@@ -1,0 +1,74 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+
+    <section class="profile-info">
+        <ul class="my-profile-nav">
+            <li class="item"><a href="{{ path('coach_show', { id : event.id }) }}">Мой профиль</a></li>
+            <li class="item"><a href="#">Тренер</a></li>
+            <li class="item"><a href="#">Организатор</a></li>
+            <li class="item"><a href="#">Affiliation manager</a></li>
+        </ul>
+        </div>
+        <div class="container">
+            <div class="thumb">
+
+                {% if user.photo %}
+                <img src="{% path user.photo, 'small' %}" alt="">
+                {% else %}
+                <img src="{{ asset('public/img/no-photo-mini.png') }}" alt="">
+                {% endif %}
+            </div>
+            <div class="left">
+
+                {% set difference = date("now").diff(date(user.dateOfBirth)) %}
+                {% set years = difference.days / 356 %}
+
+                {{ "now"|date('d-m-Y') }}
+                {{ user.dateOfBirth|date('d-m-Y') }}
+
+                <div class="name">{{ user.firstname }} {{ user.lastname }}</div>
+                <div class="tth"><span>Страна</span><span class="result">{{ user.country }}</span></div>
+                <div class="tth"><span>Возраст</span><span class="result">{{ years|number_format }}</span></div>
+
+            </div>
+            <div class="flag">
+                {% if user.country and user.country.photo %}
+                <a href="#" class="flag-country-link">
+                    <img src="{% path user.country.photo, 'big' %}" alt="">
+                </a>
+
+                {% endif %}
+                <a href="{{ path('participant_new', { event : event.id } ) }}" class="edit-profile">Добавить участника</a>
+            </div>
+        </div>
+    </section>
+
+
+    {% block content %}
+        <div class="flex container profile-statistic-news">
+
+            <div class="dark stat-table" style="width: 100%">
+                <div class="place">
+                    <div class="grey"><span>Мои участники</span></div>
+                    <div class="score">
+                        <div class="table">
+                            {% for entity in participants %}
+                                <div class="row">
+                                    <div class="td"><span class="name">{{ loop.index }}</span></div>
+                                    <div class="td"><span class="name"><a href="{{ path('event_participant_show', { event : event.id, 'id': entity.id}) }}" style="text-decoration: underline">{{ entity.firstname }}  {{ entity.lastname }}, Weight - {{ entity.categoryWeigth }} {{ entity.gi }}  Date of Birth - {{ entity.dateBirth|date('d-m-Y') }}</a></span></div>
+                                    <div class="td"><span class="comment">{{ entity.category }} {{ entity.categoryWeigth }} {{ entity.color }}</span></div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+
+
+{% endblock %}

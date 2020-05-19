@@ -1,0 +1,56 @@
+<div class="footer-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-widget para-widget">
+                    <img src="{{ asset('public/img/footer-logo.png') }}" class="footer-logo" alt="">
+                    <p>{{ static.footerDescription|raw }}</p>
+                    <p>&copy; 2019 Travel Все права защищены.<br>
+                        Designed by <i class="zmdi zmdi-favorite-outline"></i> <a href="#">Travel</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-widget list-widget">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="{{ path('main_index') }}">Главная</a></li>
+                        <li><a href="{{ path('tours') }}">Туры</a></li>
+                        <li><a href="{{ path('destinations') }}">Локации</a></li>
+                        <li><a href="{{ path('about') }}">О нас</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-widget pink-icon-widget">
+                    <h4>Свяжитесь с нами</h4>
+                    <ul>
+                        <li><a href="tel:{{ static.phone }}">{{ static.phone }}</a></li>
+                        <li><a href="mailto:{{ static.email }}">{{ static.email }}</a></li>
+                        <li><a href="{{ static.addressLink }}" target="_blank">{{ static.address }}</a></li>
+                    </ul>
+
+                    <div class="social-links-icon">
+                        {% if static.facebook %}
+                        <a href="http://{{ static.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                        {% endif %}
+                        {% if static.twitter %}
+                        <a href="http://{{ static.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                        {% endif %}
+                        {% if static.instagram %}
+                        <a href="http://{{ static.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
+                        {% endif %}
+                        {% if static.google %}
+                        <a href="http://{{ static.google }}" target="_blank"><i class="fa fa-google-plus"></i></a>
+                        {% endif %}
+                        {% if static.whatsapp %}
+                        <a href="http://{{ static.whatsapp }}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                        {% endif %}
+                        {% if static.telegram %}
+                        <a href="http://{{ static.telegram }}" target="_blank"><i class="fa fa-telegram"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

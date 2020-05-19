@@ -1,0 +1,39 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="destinations-page-content-area section-padding" id="start">
+        <div class="sea-tours-columns padding-bottom">
+            <div class="container">
+                <div class="row">
+
+                    {% for tour in tours %}
+
+                        <div class="col-sm-4">
+                            <div class="single-sea-tours-item">
+                                <div class="single-sea-tours-image single-sea-tours-image{{ loop.index }} black-overlay ">
+                                    <t>{{ asset(['public/img/', tour.titleImage]|join) }}|</t>
+                                    <a href="{{ path('tours_show', {'id': tour.id}) }}#price" class="pink-btn">${{ tour.price }}</a>
+                                    <a href="{{ path('tours_show', {'id': tour.id}) }}#title"><h2>{{ tour.name }}</h2></a>
+                                </div>
+                                <div class="single-sea-tours-text">
+                                    <a href="{{ path('tours_show', {'id': tour.id}) }}#title"><h5>{{ tour.title }}</h5></a>
+                                    <span class="post-review-stars">
+                                        <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                        <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                        <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                        <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                        <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                    </span>
+                                    <span class="post-review-count"><a href="{{ path('tours_show', {'id': tour.id}) }}#title">({{ reviews.reviewsCount(tour.id) }} Reviews)</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

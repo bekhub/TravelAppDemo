@@ -1,0 +1,36 @@
+{% extends "MainBundle::layout.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div class="login-page-content-area section-padding" id="register">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-page-logo text-center">
+                        <img src="{{ asset('public/img/footer-logo.png') }}" alt="">
+                        <p>Create a new account</p>
+                    </div>
+                    <div class="login-form-div">
+                        <form action="{{ path('register') }}" method="post" >
+                            {{ form_start(form) }}
+                            {{ form_errors(form) }}
+
+                            {{ form_row(form.username, {'attr': {'class': 'form-control', 'placeholder': "Username"}}) }}
+                            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': "Email"}}) }}
+                            {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': "Password"}}) }}
+                            {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control', 'help': 'Введите пароль повторно', 'placeholder': "Confirm password"}}) }}
+                            <input type="checkbox" name="checkbox" id="login-checkbox" value="value" required>
+                            <label for="login-checkbox">I agree to the terms of use and privacy.</label>
+                            <button type="submit">Register Now</button>
+                            <a href="#" class="login-via-btn login-via-facebook"><i class="zmdi zmdi-facebook"></i> <span>Login via facebook</span>k</a>
+                            <a href="#" class="login-via-btn login-via-google-plus"><i class="zmdi zmdi-google-plus"></i> <span>Login via google</span></a>
+                            <a href="#" class="login-via-btn login-via-twitter"><i class="zmdi zmdi-twitter"></i> <span>Login via twitter</span></a>
+                            {{ form_end(form) }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

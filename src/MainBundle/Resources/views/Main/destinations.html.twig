@@ -1,0 +1,100 @@
+{% extends "MainBundle::layout.html.twig" %}
+
+{% block title %}Destination{% endblock %}
+
+{% block body %}
+    <!--destinations-page-content-area start -->
+    <div class="destinations-page-content-area section-padding" id="start">
+        <div class="destinations-title-section padding-bottom text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Добро пожаловать в Азию</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-destination-columns padding-bottom">
+            <div class="container">
+                <div class="row">
+                    {% for destination in destinations %}
+                    <div class="col-md-3 col-sm-6">
+                        <a href="{{ path('destination_show', {'destination_id': destination.id}) }}">
+                            <div class="single-top-destination-item top-destination-bg-{{ loop.index }} black-overlay">
+                                <di>{{ asset(['public/img/', destination.destinationImage]|join) }}|</di>
+                                <div class="single-top-destination-item-inner">
+                                    <h2>{{ destination.destination }}</h2>
+    {#                                <a href="#" class="pink-btn">$1250</a>#}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+{#                    <div class="col-md-3 col-sm-6">#}
+{#                        <div class="single-top-destination-item top-destination-bg-2 black-overlay">#}
+{#                            <div class="single-top-destination-item-inner">#}
+{#                                <h2>Thailand</h2>#}
+{#                                <a href="#" class="pink-btn">$530</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6">#}
+{#                        <div class="single-top-destination-item top-destination-bg-3 black-overlay">#}
+{#                            <div class="single-top-destination-item-inner">#}
+{#                                <h2>Paris</h2>#}
+{#                                <a href="#" class="pink-btn">$750</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6">#}
+{#                        <div class="single-top-destination-item top-destination-bg-4 black-overlay">#}
+{#                            <div class="single-top-destination-item-inner">#}
+{#                                <h2>Prague</h2>#}
+{#                                <a href="#" class="pink-btn">$950</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </div>
+{#        <div class="top-destination-columns">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col-md-3 col-sm-6">#}
+{#                        <div class="single-top-destination-item top-destination-bg-5 black-overlay">#}
+{#                            <div class="single-top-destination-item-inner">#}
+{#                                <h2>New York</h2>#}
+{#                                <a href="#" class="pink-btn">$1250</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6">#}
+{#                        <div class="single-top-destination-item top-destination-bg-6 black-overlay">#}
+{#                            <div class="single-top-destination-item-inner">#}
+{#                                <h2>Thailand</h2>#}
+{#                                <a href="#" class="pink-btn">$530</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6">#}
+{#                        <div class="single-top-destination-item top-destination-bg-7 black-overlay">#}
+{#                            <div class="single-top-destination-item-inner">#}
+{#                                <h2>Paris</h2>#}
+{#                                <a href="#" class="pink-btn">$750</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6">#}
+{#                        <div class="single-top-destination-item top-destination-bg-8 black-overlay">#}
+{#                            <div class="single-top-destination-item-inner">#}
+{#                                <h2>Prague</h2>#}
+{#                                <a href="#" class="pink-btn">$950</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+    <!--destinations-page-content-area start -->
+{% endblock %}

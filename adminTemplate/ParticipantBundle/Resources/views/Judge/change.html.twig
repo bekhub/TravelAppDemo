@@ -1,0 +1,64 @@
+{% extends 'EventBundle:Event:show.html.twig' %}
+
+{% block event_content %}
+
+    <ul>
+        <li class="tip"><a href="{{ path('event_info', {'id': event.id}) }}">Information</a></li>
+        <li class="tip"><a href="{{ path('event_participant_list', { id : event.id }) }}">Registration</a></li>
+
+        <li class="tip"><a href="{{ path('braket_list', { event : event.id }) }}">Brackets & Brackets</a></li>
+
+        <li class="tip active"><a href="{{ path('match_list', {'color': color.id, 'event': event.id, 'weight': weight.id}) }}">Matches</a></li>
+        <li class="tip"><a href="#">Results</a></li>
+
+
+
+        <li class="tip"><a href="{{ path('participant_new', { event : event.id }) }}" class="reg-btn">Зарегистрироваться на турнир</a></li>
+    </ul>
+
+
+
+    <div class="container event-nav brakets">
+        <div class="tab" >
+
+            <div class="event-btm">
+                <div class="event-btm-2">
+
+                    <h2 class="title">Match {{ match.number }}</h2>
+                    <div class="participants-list">
+
+                        <section class="profile-statistic">
+                            <div class="dark container">
+                                <div class="it">
+                                    <div class="left win">
+                                        <div class="circle">
+                                            <span class="result">2</span>
+                                            <span>win</span>
+                                        </div>
+                                    </div>
+                                    <div class="right win">
+                                        <p>{{ match.player1 }}</p>
+                                        <p><span>1</span> By Submissions</p>
+                                    </div>
+                                </div>
+                                <div class="it">
+                                    <div class="left lose">
+                                        <div class="circle">
+                                            <span class="result">2</span>
+                                            <span>lose</span>
+                                        </div>
+                                    </div>
+                                    <div class="right lose">
+                                        <p>{{ match.player2 }}</p>
+                                        <p><span>1</span> By Submissions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

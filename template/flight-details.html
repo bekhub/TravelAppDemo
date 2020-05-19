@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Travel Flight Details</title>
+
+    <!--bootstrap.min.css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!--font-awesome.min.css -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <!--material-design-iconic-font.min.css -->
+    <link href="assets/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <!--owl.carousel.min.css -->
+    <link href="assets/css/owl.carousel.min.css" rel="stylesheet">
+    <!--magnific-popup.css -->
+    <link href="assets/css/magnific-popup.css" rel="stylesheet">
+    <!--nice-select.css -->
+    <link href="assets/css/nice-select.css" rel="stylesheet">
+    <!--slicknav.min.css -->
+    <link href="assets/css/slicknav.min.css" rel="stylesheet">
+    <!--style.css -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!--responsive.css -->
+    <link href="assets/css/responsive.css" rel="stylesheet">
+
+</head>
+<body>
+<!--Popup search area start -->
+<div id="popup-search-box-id" class="popup-search-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="popup-search-box-inner">
+                    <form action="mail.php">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="search" placeholder="Search here...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit"><i class="zmdi zmdi-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <span class="close-btn-search"><i class="zmdi zmdi-close"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Popup search area end -->
+<!--page-welcome-area start -->
+<div class="page-welcome-area">
+    <div class="header-area header-absolute page-header-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="logo">
+                        <a href="index.html"><img src="../img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mainmenu">
+                        <ul id="slicknav-menu-list">
+                            <li><a href="index.html">Home</a>
+                                <ul>
+                                    <li><a href="index-2.html">Hompage two</a></li>
+                                    <li><a href="index-3.html">Hompage three</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="tours.html">Tours</a>
+                                <ul>
+                                    <li><a href="tours-details.html">Tours Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="about-us.html">About</a></li>
+                            <li><a href="destinations.html">Destination</a></li>
+                            <li><a href="team-member.html">Team</a>
+                                <ul>
+                                    <li><a href="team-details.html">Team Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Page</a>
+                                <ul>
+                                    <li><a href="car-booking.html">Car Booking</a></li>
+                                    <li><a href="car-list.html">Car List</a></li>
+                                    <li><a href="car-details.html">Car Details</a></li>
+                                    <li><a href="flight-home.html">Flight Home</a></li>
+                                    <li><a href="flight-booking.html">Flight Booking</a></li>
+                                    <li><a href="flight-details.html">Flight Details</a></li>
+                                    <li><a href="hotel-list.html">Hotel List</a></li>
+                                    <li><a href="hotel-details.html">Hotel Details</a></li>
+                                    <li><a href="hotel-booking.html">Hotel Booking</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="shop-details.html">Shop Details</a></li>
+                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="contact-us.html">Contact Us</a></li>
+                                    <li><a href="contact-us-v2.html">Contact Us 2</a></li>
+                                    <li><a href="404.html">404 Error</a></li>
+                                    <li><a href="404-v2.html">404 Error 2</a></li>
+                                    <li><a href=""></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="blog-medium.html">Blog</a>
+                                <ul>
+                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                    <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
+                                    <li><a href="blog-right-sidebar.html">Blog right Sidebar</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-8 col-xs-6">
+                    <div class="header-right">
+                        <a href="cart.html" class="travel-cart"><img src="../img/cart-icon-img2.png" alt=""><span>0</span></a>
+                        <a href="#" class="search-icon-header"><i class="zmdi zmdi-search"></i></a>
+                        <ul class="language-selector">
+                            <li><a href="#" class="header-flug"><img src="../img/flug-1.jpg" alt=""><i class="zmdi zmdi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#"><img src="../img/flug-2.jpg" alt=""> <span>India</span></a></li>
+                                    <li><a href="#"><img src="../img/flug-3.jpg" alt=""> <span>NewZealand</span></a></li>
+                                    <li><a href="#"><img src="../img/flug-4.jpg" alt=""> <span>Sri Lanka</span></a></li>
+                                    <li><a href="#"><img src="../img/flug-5.jpg" alt=""> <span>Zimbabwe</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href="login.html">Login</a>
+                        <a href="register.html">Register</a>
+                    </div>
+                    <div class="slicknav-menu-wrap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-title-area black-overlay text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-title-inner">
+                        <div class="page-title-inner-table-cell">
+                            <h1>Flight details</h1>
+                            <div class="page-title-menu">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Flight details</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--page-welcome-area end -->
+<!--car-details-page-content-area start -->
+<div class="car-details-page-content-area section-padding flight-details-page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="car-details-left-content">
+                    <div class="car-details-left-top">
+                        <h3>Flights in Greece</h3>
+                        <div class="single-car-rating">
+                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                        </div>
+                        <div class="car-price">
+                            <h4>$250 <span>Per Person</span></h4>
+                        </div>
+                        <div class="car-details-box">
+                            <img src="../img/big-flight-img.jpg" alt="">
+                            <h4>Description</h4>
+                            <p>Swimming hundreds of feet beneath the ocean’s surface in many parts of the world are prolific architects cal
+                                ed giant larvacean sreports that say what has really happened,” said Manuel Gomes, the president of Grijo
+                                of the teams that called for the boycott These problems have draged on for years, and they are very serious. </p>
+                            <p>Reports that say what has really happened” said Manuel Gomes the president of Grijo, one of the teams that
+                                called for the boycott These problems have dragged on for years, and they are very serious. We have decide
+                                something has to be done” Their justification came in the form of a smattering .</p>
+                        </div>
+                    </div>
+                    <div class="car-list-bottom-popular padding-top">
+                        <h3>Popular Flights</h3>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="car-list-single-box">
+                                    <div class="car-list-single-box-image flight-list-single-box-image5">
+                                        <div class="car-list-image-inner">
+                                            <h3>Cheap Flights to Brasil</h3>
+                                            <div class="single-car-rating">
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="car-list-single-box-text">
+                                        <h4>$865 <span>Per Person</span></h4>
+                                        <p>Connection between our planet and the heav
+                                            ens above These volcanoes which have begu
+                                            millions of tourists visiting .</p>
+                                        <div class="car-list-buttons">
+                                            <a href="cart.html" class="pink-btn">Book now</a>
+                                            <a href="#" class="car-share-btn"><i class="zmdi zmdi-share"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="car-list-single-box">
+                                    <div class="car-list-single-box-image flight-list-single-box-image6">
+                                        <div class="car-list-image-inner">
+                                            <h3>Cheap Flights to Spaine</h3>
+                                            <div class="single-car-rating">
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="car-list-single-box-text">
+                                        <h4>$455 <span>Per day</span></h4>
+                                        <p>Layer of solid rock that can flow like a liquid,
+                                            just substantially slower this mantle is there
+                                            ason plates move across the surface.</p>
+                                        <div class="car-list-buttons">
+                                            <a href="cart.html" class="pink-btn">Book now</a>
+                                            <a href="#" class="car-share-btn"><i class="zmdi zmdi-share"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="car-details-right-sidebar">
+                    <div class="flight-details-gray-widget text-center">
+                        <h4>Emirates Aerlines</h4>
+                        <img src="../img/flight-details-logo-img.png" alt="">
+                    </div>
+                    <div class="car-details-right-sidebar-single car-details-map">
+                        <h3>Map</h3>
+                        <div class="contact-map-area">
+                            <div id="googleMap" style="width:100%;height:370px"></div>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7CQl6fRhagGok6CzFGOOPne2X1u1spoA"></script>
+                            <script src="assets/js/map.js"></script>
+                        </div>
+                        <div class="car-details-address">
+                            <p><b>Rental Company: Address</b></p>
+                            <p>8 King Street Melbourne Victoria,  <br>
+                                WA United States</p>
+                            <a href="tel:(062)-109-9222"><i class="zmdi zmdi-phone"></i>(062) 109-9222</a>
+                            <a href="mailto:ecollier@gmail.com"><i class="zmdi zmdi-star"></i>ecollier@gmail.com</a>
+                            <a href="#"><i class="zmdi zmdi-star"></i>www.travel.com</a>
+                        </div>
+                    </div>
+                    <div class="car-details-right-sidebar-single car-details-booking">
+                        <h3>Booking Details</h3>
+                        <ul>
+                            <li><b>Category</b> : flights</li>
+                            <li><b>Price</b> : $250/ Par Person</li>
+                            <li><b>Date</b> : July 17th to July 17th</li>
+                            <li><b>Flight Type </b>:  Refundable</li>
+                            <li><b>Fare Type </b> : Full Air Conditioned</li>
+                            <li><b>Cancellation</b> : $85 / Person</li>
+                            <li><b>Flight Change</b> : $45 / Person</li>
+                            <li><b>Seats & Baggage</b> : Extra Charge</li>
+                            <li><b>Base Fare</b> : $380</li>
+                            <li><b>Taxes & Fees</b> : $350</li>
+                            <li><b>Total Price</b> : $730</li>
+                        </ul>
+                        <a href="cart.html" class="pink-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--car-details-page-content-area end -->
+<!--footer-area start -->
+<div class="footer-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-widget para-widget">
+                    <img src="../img/footer-logo.png" class="footer-logo" alt="">
+                    <p>Chinese state media captured the severity of the an
+                        city’s latest air pollution crisis which local authorities
+                        blamed largely on sand that winds .</p>
+                    <p>&copy; 2017 Crazycafe.All Rights Reserved.<br>
+                        Designed by <i class="zmdi zmdi-favorite-outline"></i> <a href="#">crazycafe.net</a></p>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-widget list-widget">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">Press Centre</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Travel News</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-widget list-widget">
+                    <h4>Recent Posts</h4>
+                    <ul>
+                        <li><a href="#">Standard Blog Post</a></li>
+                        <li><a href="#">Amazing Fullwidth Post</a></li>
+                        <li><a href="#">Amazing Place</a></li>
+                        <li><a href="#">Quote Post</a></li>
+                        <li><a href="#">Link Post</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-widget pink-icon-widget">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="tel:(799)-376-4681">(799) 376-4681</a></li>
+                        <li><a href="mailto:Stroman.rogers@gmail.com">Stroman.rogers@gmail.com</a></li>
+                        <li><a href="#">6281 Liana Extensions,
+                            Lemkeport, NY </a></li>
+                    </ul>
+
+                    <div class="social-links-icon">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer-area end -->
+
+<!--jquery.min.js-->
+<script src="assets/js/jquery.min.js"></script>
+<!--bootstrap.min.js-->
+<script src="assets/js/bootstrap.min.js"></script>
+<!--owl.carousel.min.js-->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!--magnific-popup-1.1.0.js-->
+<script src="assets/js/magnific-popup-1.1.0.js"></script>
+<!--jquery.nice-select.min.js-->
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<!--jquery.waypoints.4.0.0.min.js-->
+<script src="assets/js/jquery.waypoints.4.0.0.min.js"></script>
+<!--jquery.counterup.min.js-->
+<script src="assets/js/jquery.counterup.min.js"></script>
+<!--jquery.slicknav.min.js-->
+<script src="assets/js/jquery.slicknav.min.js"></script>
+<!--main.js-->
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block title %}Leave a Comment{% endblock%}
+
+{% block body %}
+    <div role="tabpanel" class="tab-pane active" id="reviews">
+        <div class="leave-a-comment-form">
+            <h1>Leave a Comment</h1>
+            {% include 'MainBundle:Review:form.html.twig' with { 'form': form } %}
+        </div>
+    </div>
+{% endblock %}

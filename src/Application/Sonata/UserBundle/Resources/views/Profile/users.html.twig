@@ -1,0 +1,26 @@
+<div class="people-list" id="people-list">
+    <div class="search">
+        <input type="text" placeholder="search"/>
+        <i class="fa fa-search"></i>
+    </div>
+    <ul class="list">
+        {% for item in users %}
+            <a href="{{ path('new_message',{'toUser':item.id, 'username':item}) }}" style="color: #f9f3f4">
+                <li class="clearfix">
+                    {% if item.photo %}
+                        <img src="{% path item.photo, 'medium' %}" height="55px" style="border-radius: 50%">
+                    {% else %}
+                        <img src="{{ asset('public/img/ava_default_200.jpg') }}" height="55px"
+                             style="border-radius: 50%">
+                    {% endif %}
+                    <div class="about">
+                        <div class="name">{{ item |slice(0,21)  }} <span style="color: orangered" id="counter{{ item.id }}" > </span></div>
+                        <div class="status">
+                            <i class="fa fa-circle"></i> {{ item.lastLogin | date('d.m.Y H:i') }}
+                        </div>
+                    </div>
+                </li>
+            </a>
+        {% endfor %}
+    </ul>
+</div>

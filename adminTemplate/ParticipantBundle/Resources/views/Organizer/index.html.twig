@@ -1,0 +1,171 @@
+{% extends 'EventBundle:Event:show.html.twig' %}
+{% block styles %}
+    <style>
+        .win{
+            color: green;
+            font-weight: bold;
+        }
+        .lose{
+            color: red;
+            font-weight: bold;
+        }
+        table tr th{
+            min-width: 180px;
+            min-height: 30px;
+        }
+        table tr td{
+            min-height: 30px;
+        }
+
+    </style>
+
+    <style type="text/css">
+        .Table
+        {
+            display: table;
+        }
+        .Title
+        {
+            display: table-caption;
+            text-align: center;
+            font-weight: bold;
+            font-size: larger;
+        }
+        .Heading
+        {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+        .Row
+        {
+            display: table-row;
+        }
+        .Cell
+        {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .table-column{
+            width: 100%;
+            border: solid 1px transparent;
+            text-align: left;
+            height: 60px;
+
+        }
+        .table-column.bordered{
+            border: solid 1px white;
+        }
+
+        .table-column p{
+            margin-left: 15px
+        }
+
+    </style>
+
+{% endblock %}
+{% block event_content %}
+
+<ul>
+    <li class="tip"><a href="{{ path('event_info', {'id': event.id}) }}">Information</a></li>
+    <li class="tip"><a href="{{ path('event_participant_list', { id : event.id }) }}">Registration</a></li>
+
+    <li class="tip active"><a href="{{ path('event_list', { event : event.id }) }}">Brackets & Brackets</a></li>
+
+    <li class="tip"><a href="{{ path('match_list', {'color': color.id, 'event': event.id, 'weight': weight.id}) }}">Matches</a></li>
+
+
+
+
+    <li class="tip"><a href="{{ path('participant_new', { event : event.id }) }}" class="reg-btn">Зарегистрироваться на турнир</a></li>
+</ul>
+
+
+
+<div class="container event-nav brakets">
+    <div class="tab" >
+
+        <div class="event-btm">
+            <div class="event-btm-2">
+
+                <div class="Table" style="width: 100%">
+                    {% set numberStage = 0 %}
+
+                    {% for stage in stages %}
+                        <div style="width: calc({{ 100 / stages|length  }}%); float: left">
+                            <div class="table-column">
+                                <p>{{ stage }}</p>
+                            </div>
+
+                            {% set to = 2**numberStage - 1 %}
+
+                            {% for k in 0..to if k < to %}
+                                <div class="table-column">
+                                    <p></p>
+                                </div>
+                            {% endfor %}
+
+                            {% for entity in matches if entity.stage == stage %}
+
+                                <div class="table-column bordered">
+                                    <p {% if (entity.winner == entity.player1 and entity.winner) %}style="font-weight: bold; color: green" {% endif %}>
+
+                                        {% if (entity.player1 and entity.player1.country and entity.player1.country.photo) %}
+                                        <img style="width: 20px" src="{% path entity.player1.country.photo, 'small' %}">
+                                        {% endif %}
+
+                                        {{ entity.player1 }} {% if entity.totalPoint1 %} ({{ entity.totalPoint1 }}) {% endif %}
+
+                                    </p>
+                                </div>
+
+
+                                {% set to = (2**(numberStage + 1)) - 1 %}
+
+                                {% for k in 0..to if k < to %}
+                                    <div class="table-column">
+                                        <p></p>
+                                    </div>
+                                {% endfor %}
+
+
+                                <div class="table-column bordered">
+                                    <p {% if (entity.winner == entity.player2 and entity.winner) %}style="font-weight: bold; color: green" {% endif %}>
+
+                                        {% if (entity.player2 and entity.player2.country and entity.player2.country.photo) %}
+                                            <img style="width: 20px" src="{% path entity.player2.country.photo, 'small' %}">
+                                        {% endif %}
+
+                                        {{ entity.player2 }} {% if entity.totalPoint2 %} ({{ entity.totalPoint2 }}) {% endif %}
+
+                                    </p>
+                                </div>
+
+
+                                {% set to = (2**(numberStage + 1)) - 1 %}
+
+                                {% for k in 0..to if k < to %}
+                                    <div class="table-column">
+                                        <p></p>
+                                    </div>
+                                {% endfor %}
+
+                            {% endfor %}
+
+                            {% set to = 2**numberStage - 1 %}
+
+
+                        </div>
+
+                    {% set numberStage = numberStage + 1 %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

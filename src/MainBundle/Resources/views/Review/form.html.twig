@@ -1,0 +1,34 @@
+{#<div class="leave-a-comment-form">#}
+    {{ form_start(form, { 'action': path('review_create' , { 'tour_id' : review.tourId.id }), 'method': 'POST'}) }}
+{#    {{ form_errors(form) }}#}
+{#    <div class="row">#}
+{#        <div class="col-md-6">#}
+{#            {{ form_row(form.user, {'attr': {'class': 'form-control', 'placeholder': "Name*"}}) }}#}
+{#        </div>#}
+{#        <div class="col-md-6">#}
+{#            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': "Email*"}}) }}#}
+{#        </div>#}
+{#    </div>#}
+{#    {{ form_row(form.review,{'attr': {'class': 'form-control', 'placeholder': "Comment*"}}) }}#}
+{#    {{ form_row(form._token) }}#}
+
+        {{ form_widget(form) }}
+    <button type="submit">Submit now</button>
+    {{ form_end(form) }}
+{#</div>#}
+
+{#<div class="leave-a-comment-form">#}
+{#    <h4>Leave a Comment</h4>#}
+{#    <form action="https://formspree.io/rabukushia@gmail.com" method="POST">#}
+{#        <div class="row">#}
+{#            <div class="col-md-6">#}
+{#                <input type="text" name="name" placeholder="Name*" required>#}
+{#            </div>#}
+{#            <div class="col-md-6">#}
+{#                <input type="email" name="email" placeholder="Email*" required>#}
+{#            </div>#}
+{#        </div>#}
+{#        <textarea name="leave-comment-message" id="leave-comment-message" cols="30" rows="10" placeholder="Comment*"></textarea>#}
+{#        <button type="submit">Submit now</button>#}
+{#    </form>#}
+{#</div>#}

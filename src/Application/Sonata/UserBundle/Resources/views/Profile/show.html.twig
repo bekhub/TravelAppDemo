@@ -1,0 +1,134 @@
+{% extends 'MainBundle:Main:index.html.twig' %}
+{% block blog %}
+    <div style="position: relative; margin-bottom: 30px; font-size: 20px; font-weight: 700; color: #444; line-height: 130%;">
+        {{ app.user }}
+        <a href="{{ path('blog_blog_new') }}" class="btn_sm_blue"
+           style="position: absolute;  right: 245px; margin: 0; font-size: 9px;">
+            Добавить блог
+        </a>
+        <a href="{{ path('messenger') }}" class="btn_sm_blue"
+           style="position: absolute;  right: 154px; margin: 0; font-size: 9px;">
+            Сообщение
+        </a>
+        <a href="{{ path('fos_user_profile_edit') }}" class="btn_sm_blue"
+           style="position: absolute; right: 0; margin: 0; font-size: 9px;">
+            Редактировать профиль
+        </a>
+    </div>
+
+    <table style="width: 100%;" cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr>
+            <td style="width: 120px; text-align: center;">
+                {% if app.user.photo %}
+                    <img src="{% path app.user.photo, 'medium' %}"
+                         style="width: 120px; height: auto; border-radius: 50%;">
+                    {% else %}
+                        <img src="{{ asset('public/img/ava_default_200.jpg') }}"
+                             style="width: 120px; height: auto; border-radius: 50%;">
+                {% endif %}
+                {#<div class="inf-label c-label" style="display: block;">обычный аккаунт</div>#}
+            </td>
+            <td style="padding-left: 32px;">
+                <table class="inf-list">
+                    <tbody>
+                    <tr>
+                        <td title="Комментарии">
+                            <div class="c100  center red">
+                                <span>{{ render(controller('ApplicationSonataUserBundle:ProfileFOSUser1:countCommentByUser')) }}</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                            <span class="inf-label c-label">Комментарии</span>
+                        </td>
+                        <td title="Избранное">
+                            <a href="{{ path('my_favorite') }}">
+                                <div class="c100  center orange">
+                                    <span>{{ render(controller('ApplicationSonataUserBundle:ProfileFOSUser1:countFavoritesByUser')) }}</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <span class="inf-label c-label">Избранных</span>
+                        </td>
+                        <td title="Число статей">
+                            <a href="{{ path('my_blogs') }}">
+                                <div class="c100  center orange">
+                                    <span>{{ render(controller('BlogBundle:Blog:countByUser')) }}</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <span class="inf-label c-label">статей</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+    {#<table   style="width: 100%;  cellpadding="0" cellspacing="0">#}
+        {#<tbody >#}
+        <div class="row" style="margin-top: 60px; margin-bottom: 40px;"">
+            <div class="col-md-3">
+
+                {#<td #}{#style="width:50%"#}{#>#}
+                    {#<div class="frm_line">#}
+                    {#<span class="inf-label">Подписка</span>#}
+                    {#<div><a href="http://bitstat.top/merchant_subscribe.php" class="btn_sm_green" style="margin: 0; font-size: 9px;">Купить</a></div>#}
+                    {#</div>#}
+                    <div class="frm_line">
+                        <span class="inf-label">Пол</span>
+                        <div>
+                            {% if app.user.gender == 'm' %}
+                                Мужской
+                            {% else %}
+                                Женский
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="frm_line">
+                        <span class="inf-label">День рождения</span>
+                        <div>{{ app.user.dateOfBirth | date('d.m.Y') }}</div>
+                    </div>
+
+                    <div class="frm_line">
+                        <span class="inf-label">Дата регистрации</span>
+                        <div>
+                            {{ app.user.createdAt | date('d.m.Y') }}
+                        </div>
+                    </div>
+
+                    <div class="frm_line">
+                        <span class="inf-label">Последний визит</span>
+                        <div>
+                            <font class="online-color">сейчас на сайте</font>
+                        </div>
+                    </div>
+
+                {#</td>#}
+
+            </div>
+            <div class="col-md-4">
+                {{ render(controller('BlogBundle:Comment:getByUser')) }}
+            </div>
+            <div class="col-md-5">
+                {{ render(controller('BlogBundle:Favorites:getByUserFavorites')) }}
+            </div>
+        </div>
+        {#</tbody>#}
+    {#</table>#}
+
+{% endblock %}

@@ -1,0 +1,290 @@
+<?php
+
+
+namespace MainBundle\Entity;
+
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="MainBundle\Repository\ToursRepository")
+ * @ORM\Table(name="tours")
+ * @ORM\HasLifecycleCallbacks
+ */
+class Tours
+{
+    public function __construct()
+    {
+        $this->reviews = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $days;
+
+    private $nights;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $titleImage;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\TourImages", mappedBy="tour_id")
+     */
+    private $images;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainBundle\Entity\TourReviews", mappedBy="tour_id")
+     */
+    private $reviews;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $aboutTitle;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $aboutText;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDays()
+    {
+        return $this->days;
+    }
+
+    /**
+     * @param mixed $days
+     */
+    public function setDays($days)
+    {
+        $this->days = $days;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNights()
+    {
+        $this->nights = $this->days-1;
+        return $this->nights;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitleImage()
+    {
+        return $this->titleImage;
+    }
+
+    /**
+     * @param mixed $titleImage
+     */
+    public function setTitleImage($titleImage)
+    {
+        $this->titleImage = $titleImage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param mixed $reviews
+     */
+    public function setReviews($reviews)
+    {
+        $this->reviews = $reviews;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAboutTitle()
+    {
+        return $this->aboutTitle;
+    }
+
+    /**
+     * @param mixed $aboutTitle
+     */
+    public function setAboutTitle($aboutTitle)
+    {
+        $this->aboutTitle = $aboutTitle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAboutText()
+    {
+        return $this->aboutText;
+    }
+
+    /**
+     * @param mixed $aboutText
+     */
+    public function setAboutText($aboutText)
+    {
+        $this->aboutText = $aboutText;
+    }
+
+    /**
+     * Add images
+     *
+     * @param TourImages $images
+     * @return Tours
+     */
+    public function addImage(TourImages $images)
+    {
+        $this->images[] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param TourImages $images
+     */
+    public function removeImage(TourImages $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Add reviews
+     *
+     * @param TourReviews $reviews
+     * @return Tours
+     */
+    public function addReview(TourReviews $reviews)
+    {
+        $this->reviews[] = $reviews;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviews
+     *
+     * @param TourReviews $reviews
+     */
+    public function removeReview(TourReviews $reviews)
+    {
+        $this->reviews->removeElement($reviews);
+    }
+}

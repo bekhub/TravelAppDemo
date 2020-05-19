@@ -1,0 +1,10 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <div class="content-width content-main">
+        <div class="content-padding" style="padding-top: 30px;">
+            <h1>Письмо отправлено на адрес {{ user.email }}. В нём содержится ссылка, по которой вы можете подтвердить
+                свою регистрацию.</h1>
+        </div>
+    </div>
+{% endblock fos_user_content %}

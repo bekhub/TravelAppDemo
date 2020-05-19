@@ -1,0 +1,34 @@
+<div class="tours-details-content-right">
+    <div class="right-details-form padding-bottom">
+        {{ form_start(form, { 'action': path('reservation_create' , { 'tour_id' : reservation.tourId.id }), 'method': 'POST'}) }}
+            {{ form_errors(form) }}
+
+            {{ form_row(form.fullName) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.phone) }}
+{#            {{ form_row(form.bookDate) }}#}
+            <strong>Даты Тура *</strong>
+            <select name="bookDate" required>
+                {% for date in tourDates %}
+                <option value="{{ date }}">{{ date }}</option>
+                {% endfor %}
+            </select>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="select-item-adults-kids">
+                        {{ form_row(form.adults) }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="select-item-adults-kids">
+                        {{ form_row(form.kids) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_row(form.message) }}
+
+{#        {{ form_widget(form) }}#}
+            <button type="submit" class="pink-btn">Забронировать</button>
+        {{ form_end(form) }}
+    </div>
+</div>

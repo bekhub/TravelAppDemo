@@ -1,0 +1,170 @@
+{% extends 'ParticipantBundle:Coach:index.html.twig' %}
+
+{% block content %}
+
+    <div class="container event-nav">
+        <div class="tab">
+            <div class="event-btm">
+                <div class="event-btm-2">
+                    <h2 class="title">Добавить новый</h2>
+                    <div class="dark search-participant">
+
+                        {{ form_start(form) }}
+
+                        <div>
+                            <label>Мероприятие *</label>
+                            {{ form_widget(form.event) }}
+                        </div>
+
+                        <div class="flex-between">
+                            <div class="w-50">
+                                <label>Имя * <span style=" color: red"
+                                                   id="fname-alert">Латинскими буквами</span></label>
+                                {{ form_widget(form.firstname, {'attr':{ 'class' : 'input', 'placeholder' : 'Имя' } }) }}
+
+                            </div>
+                            <div class="w-50">
+                                <label>Фамилия * <span style=" color: red" id="lname-alert">Латинскими буквами</span></label>
+                                {{ form_widget(form.lastname, {'attr':{ 'class' : 'input', 'placeholder' : 'Фамилия' } }) }}
+
+                            </div>
+                        </div>
+                        <div>
+                            <label>Пол *</label>
+                            {{ form_widget(form.gender) }}
+                        </div>
+                        <div id="birthdate">
+                            <label>Дата рождения *</label>
+                            {{ form_widget(form.dateBirth, {'attr':{'onchange':'select()'}}) }}
+                        </div>
+                        <div>
+                            <label>Категория *</label>
+                            {{ form_widget(form.category, {'attr':{'onchange':'selectCategory()'}}) }}
+                        </div>
+
+                        <div>
+                            <label>Весовая категория *</label>
+                            <select name="participant_weigth" id="participant_weigth">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+                        <div style="display: none;">
+                            <label>Весовая категория *</label>
+                            {{ form_widget(form.categoryWeigth) }}
+                        </div>
+                        <div>
+                            <label>Пояс *</label>
+
+                            <select name="participant_color" id="participant_color">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>Клуб</label>
+                            {{ form_widget(form.club) }}
+                        </div>
+
+
+
+
+
+                        <div>
+                            <label>Страна</label>
+                            {{ form_widget(form.country) }}
+                        </div>
+
+
+                        <div>
+                            <label>Gi (No Gi) *</label>
+                            {{ form_widget(form.gi) }}
+                        </div>
+
+
+                        <div>
+                            <label>Фото</label>
+                            {{ form_widget(form.photo) }}
+                        </div>
+
+
+                        <input type="submit" class="input send-btn" value="Добавить">
+
+                        {{ form_widget(form._token) }}
+
+
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+           
+
+        });
+
+        function select() {
+            let id = document.getElementById('participant_dateBirth_year').value;
+            let gender = document.getElementById('participant_gender').value;
+            let event = document.getElementById('participant_event').value;
+            // console.log(id);
+            // console.log(gender);
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: Routing.generate('category', {id: id}) +   "/" + gender + "/" + event,
+                success: function (data) {
+
+                    $('#participant_category').empty();
+
+                    var selectedId = 0;
+                    for (var i = 0; i < data.length; i++){
+                        if (i===0) selectedId = data[i]['id'];
+                        $('#participant_category').append('<option value="'+ data[i]['id'] +'">'+ data[i]['title'] + '</option>');
+                    }
+
+                    if (selectedId !== 0){
+                        setColor(selectedId);
+                    }
+                },
+            });
+
+        }
+
+        function selectCategory() {
+            alert('keldi');
+            let categoryID = document.getElementById('participant_category').value;
+            setColor(categoryID);
+
+        }
+
+        function setColor(id) {
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'html',
+                url: Routing.generate('bireki', {id: id}),
+                success: function (data) {
+                    // alert("2 - " + data);
+                    $('#participant_weigth').html(data);
+                },
+            });
+            $.ajax({
+                type: 'POST',
+                dataType: 'html',
+                url: Routing.generate('birekiuch', {id: id}),
+                success: function (data) {
+                    $('#participant_color').html(data);
+                },
+            });
+
+        }
+
+    </script>
+{% endblock %}

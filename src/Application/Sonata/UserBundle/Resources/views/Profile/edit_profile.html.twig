@@ -1,0 +1,100 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{#{% extends "SonataUserBundle:Profile:action.html.twig" %}#}
+{% extends 'MainBundle:Main:index.html.twig' %}
+{% block blog %}
+    {#<div class="" style="height: 500px">#}
+    {#{% sonata_template_box 'This is the user profile edition template. Feel free to override it.' %}#}
+
+    {#{{ form_errors(form) }}#}
+
+    {#{% form_theme form _self %}#}
+
+            {#<div class="span2 col-lg-6" style="padding: 8px 0;">#}
+                {#<!-- Tab panes -->#}
+                {#<div class="tab-content">#}
+                    {#<div role="tabpanel" class="tab-pane active" id="profile">#}
+                        {#<div class="redact-aunt">#}
+                            {#<div class="panel panel-info">#}
+                                {#<div class="panel-heading">#}
+                                    {#<h3 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h3>#}
+                                {#</div>#}
+                                {#<div class="panel-body">#}
+                                    {#<form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">#}
+                                        {#{{ form_widget(form) }}#}
+                                        {#<div class="form-actions">#}
+                                            {#<button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>#}
+                                        {#</div>#}
+                                    {#</form>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+{#</div>#}
+    <div style="margin: 0 30px">
+        <div style="font-size: 20px; font-weight: 700; color: #444; line-height: 130%;text-align:center;margin-bottom:30px;">Редактирование профиля</div>
+
+        <table style="width: 100%;">
+            <tbody>
+            <tr style="vertical-align: top;">
+                <td style="width: 65%;">
+                    {{ form_start(form) }}
+                        <div class="frm_line">
+                            <b>Имя</b><br>
+                            {{ form_widget(form.firstname) }}
+                        </div>
+                        <div class="frm_line">
+                            <b>Фамилия</b><br>
+                            {{ form_widget(form.lastname) }}
+                        </div>
+
+                        <div class="frm_line">
+                            <b>Пол</b><br>
+                            {{ form_widget(form.gender) }}
+                        </div>
+
+                        <div class="frm_line">
+                            <b>Дата рождения</b><br>
+                            {{ form_widget(form.dateOfBirth) }}
+                        </div>
+                        <div class="frm_line">
+                            <b>Email</b><br>
+                            {{ form_widget(form.email) }}
+                        </div>
+
+                        <div class="frm_line">
+                            <b>Фото</b><br>
+                            {{ form_widget(form.photo) }}
+                        </div>
+
+                        {#<div class="frm_line">#}
+                            {#<b>Пароль</b><br>#}
+                            {#{{ form_widget(form.password) }}#}
+                            {#<a href="change_pwd.php" style="float: right;">Сменить пароль</a>#}
+                        {#</div>#}
+
+                        <input type="submit" name="profile_submit" class="btn_green frm_submit" value="СОХРАНИТЬ">
+                    {{ form_end(form) }}
+
+                    <br>
+                    <a href="{{ path('fos_user_profile_show') }}">Назад к профилю</a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <script>var avatar = new Avatar();</script>
+
+{% endblock %}

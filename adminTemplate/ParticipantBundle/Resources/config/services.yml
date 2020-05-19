@@ -1,0 +1,6 @@
+services:
+  participant.admin.participant:
+    class: ParticipantBundle\Admin\ParticipantAdmin
+    arguments: [~, ParticipantBundle\Entity\Participant, SonataAdminBundle:CRUD]
+    tags:
+      - { name: sonata.admin, manager_type: orm, group: admin, label: Participant }
